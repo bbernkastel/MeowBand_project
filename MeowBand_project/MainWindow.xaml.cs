@@ -26,7 +26,6 @@ namespace MeowBand_project
             InitializeComponent();
             db = new DBContext();
 
-
         }
     }
 }
