@@ -20,9 +20,13 @@ namespace MeowBand_project
     /// </summary>
     public partial class MainWindow : Window
     {
+        DBContext db;
         public MainWindow()
         {
             InitializeComponent();
+            db = new DBContext();
+
+
         }
     }
 }
