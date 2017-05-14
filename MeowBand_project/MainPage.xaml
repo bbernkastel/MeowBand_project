@@ -99,7 +99,7 @@
                         <Label Content="Home" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Label Content="nya"/>
+                <Frame x:Name="home_frame"></Frame>
             </TabItem>
             <TabItem x:Name="Musictab" Margin="-2,-2,0,0">
                 <TabItem.Header>
@@ -151,6 +151,15 @@
                     <StackPanel Orientation="Horizontal" >
                         <Image Width="16" Source="Resources\Image\menu\favorite-3-16.png"/>
                         <Label Content="My favorites" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Label Content="nya"/>
+            </TabItem>
+            <TabItem x:Name="Profiletab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\guest-16.png"/>
+                        <Label Content="My profile" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
                 <Label Content="nya"/>
