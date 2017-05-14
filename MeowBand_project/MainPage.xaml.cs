@@ -15,20 +15,13 @@ using System.Windows.Shapes;
 namespace MeowBand_project
 {
     /// <summary>
-    /// Interaction logic for SignIn.xaml
+    /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class SignIn : Window
+    public partial class MainPage : Window
     {
-        public SignIn()
+        public MainPage()
         {
             InitializeComponent();
-        }
-
-        private void signup_btn_Click(object sender, RoutedEventArgs e)
-        {
-            SignUp signUp = new SignUp();
-            signUp.Show();
-            Close();
         }
     }
 }

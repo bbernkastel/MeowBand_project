@@ -28,5 +28,12 @@ namespace MeowBand_project
         {
 
         }
+
+        private void signin_btn_Click(object sender, RoutedEventArgs e)
+        {
+            SignIn signin = new SignIn();
+            signin.Show();
+            Close();
+        }
     }
 }

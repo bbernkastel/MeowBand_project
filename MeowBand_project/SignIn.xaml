@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeowBand_project"
         mc:Ignorable="d"
-        Title="MeowBand: Authorization" Height="500" Width="400" Foreground="#FFFAFAFA" Background="#FF212121">
+        Title="MeowBand: Authorization" Height="500" Width="400" Foreground="#FFFAFAFA" Background="#FF212121" Icon="Resources/Image/cat-black-face-32-icon.png" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="meowbtn" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -87,7 +87,7 @@
                     <BitmapImage UriSource="Resources/Image/meowbandsignup.png" />
                 </Image.Source>
             </Image>
-            <Button x:Name="signup_btn" Content="SIGN UP" Grid.Column="2" HorizontalAlignment="Left" Margin="108,10,0,0" VerticalAlignment="Top" Width="84" Height="25" FontSize="13" BorderThickness="0" Style="{DynamicResource meowbtn}" Background="#FF757575" Foreground="#FFD8D8D8" TextOptions.TextFormattingMode="Display" BorderBrush="#FF4D4D4D" Grid.ColumnSpan="2"/>
+            <Button x:Name="signup_btn" Content="SIGN UP" Grid.Column="2" HorizontalAlignment="Left" Margin="108,10,0,0" VerticalAlignment="Top" Width="84" Height="25" FontSize="13" BorderThickness="0" Style="{DynamicResource meowbtn}" Background="#FF757575" Foreground="#FFD8D8D8" TextOptions.TextFormattingMode="Display" BorderBrush="#FF4D4D4D" Grid.ColumnSpan="2" Click="signup_btn_Click"/>
         </Grid>
 
     </Grid>

@@ -67,6 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
     <Compile Include="t_genre.cs" />
     <Compile Include="t_user.cs" />
     <Compile Include="t_userlikes.cs" />
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MeowBandApp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -135,6 +142,32 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Image\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\pawprint-32-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\cat-black-face-32-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\player\arrow-107-16.png" />
+    <Resource Include="Resources\Image\player\arrow-41-16.png" />
+    <Resource Include="Resources\Image\menu\group-16.png" />
+    <Resource Include="Resources\Image\menu\guest-16.png" />
+    <Resource Include="Resources\Image\menu\guitar-16.png" />
+    <Resource Include="Resources\Image\menu\headphones-8-16.png" />
+    <Resource Include="Resources\Image\menu\home-7-16.png" />
+    <Resource Include="Resources\Image\player\media-pause-16.png" />
+    <Resource Include="Resources\Image\player\play-5-16.png" />
+    <Resource Include="Resources\Image\menu\settings-9-16.png" />
+    <Resource Include="Resources\Image\menu\star-16.png" />
+    <Resource Include="Resources\Image\menu\treble-clef-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\menu\data-transfer-download-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\menu\favorite-3-16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
