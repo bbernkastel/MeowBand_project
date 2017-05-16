@@ -23,6 +23,7 @@ namespace MeowBand_project
         public Home()
         {
             InitializeComponent();
+
         }
     }
 }
