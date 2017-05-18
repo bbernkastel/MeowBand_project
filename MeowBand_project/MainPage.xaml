@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeowBand_project"
+        xmlns:controls="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit"
         mc:Ignorable="d"
         Title="MeowBand: Indie Music Application" Height="600" Width="900" Background="#FF212121" Icon="Resources/Image/cat-black-face-32-icon.png" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="500">
     <Window.CommandBindings>
@@ -48,7 +49,7 @@
                         </Button.Background>
                     </Button>
                     <Button Command="MediaCommands.Play" x:Name="player_play" Grid.Column="1" Content="play" Margin="0,0,10,0" BorderThickness="0"  
-                        Style="{DynamicResource player_button}" Foreground="Transparent">
+                        Style="{DynamicResource player_button}" Foreground="Transparent" Click="player_play_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/Image/player/play-5-16.png" Stretch="None"/>
                         </Button.Background>
@@ -109,7 +110,7 @@
                         <Label Content="Home" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="home_frame" Source="Home.xaml" NavigationUIVisibility="Automatic" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Frame x:Name="home_frame" Source="Home.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             </TabItem>
             <TabItem x:Name="Musictab" Margin="-2,-2,0,0">
                 <TabItem.Header>
@@ -118,7 +119,7 @@
                         <Label Content="Music" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="music_frame" Source="Music.xaml" NavigationUIVisibility="Automatic" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Frame x:Name="music_frame" Source="Music.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             </TabItem>
             <TabItem x:Name="Newtab" Margin="-2,-2,0,0">
                 <TabItem.Header>
@@ -127,7 +128,7 @@
                         <Label Content="New" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="new_frame" Source="New.xaml" NavigationUIVisibility="Automatic" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Frame x:Name="new_frame" Source="New.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             </TabItem>
             <TabItem x:Name="Uploadtab" Margin="-2,-2,0,0">
                 <TabItem.Header>
@@ -136,16 +137,16 @@
                         <Label Content="Upload" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="upload_frame" Source="Upload.xaml" NavigationUIVisibility="Automatic" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Frame x:Name="upload_frame" Source="Upload.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             </TabItem>
             <TabItem x:Name="MyUploadstab" Margin="-2,-2,0,0">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" >
-                        <Image Width="16" Source="C:\Users\Ksenia\Desktop\MeowBand_project\MeowBand_project\Resources\Image\menu\treble-clef-16.png"/>
+                        <Image Width="16" Source="Resources\Image\menu\music-record-16.png"/>
                         <Label Content="My uploads" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="myuploads_frame" Source="MyUploads.xaml" NavigationUIVisibility="Automatic" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Frame x:Name="myuploads_frame" Source="MyUploads.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             </TabItem>
             <TabItem x:Name="Favoritestab" Margin="-2,-2,0,0">
                 <TabItem.Header>
@@ -154,7 +155,7 @@
                         <Label Content="My favorites" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="myfavs_frame" Source="MyFavs.xaml" NavigationUIVisibility="Automatic" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Frame x:Name="myfavs_frame" Source="MyFavs.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             </TabItem>
             <TabItem x:Name="Profiletab" Margin="-2,-2,0,0">
                 <TabItem.Header>
@@ -163,7 +164,25 @@
                         <Label Content="My profile" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="myprofile_frame" Source="MyProfile.xaml" NavigationUIVisibility="Automatic" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Frame x:Name="myprofile_frame" Source="MyProfile.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Userstab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\group-16.png"/>
+                        <Label Content="Users" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="users_frame" Source="Users.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Genretab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\treble-clef-16.png"/>
+                        <Label Content="Genres" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="genres_frame" Source="Genres.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             </TabItem>
         </TabControl>
     </DockPanel>

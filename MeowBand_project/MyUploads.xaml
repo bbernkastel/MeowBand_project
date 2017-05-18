@@ -21,9 +21,9 @@
                         <Canvas Margin="0,0,10,10">
                             <DockPanel LastChildFill="True">
                                 <Image DockPanel.Dock="Top" Height="150" Width="150" Source="C:\Users\Ksenia\Desktop\MeowBand_project\MeowBand_project\Resources\Image\album\Aurora.jpg"/>
-                                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Text="Running with the Wolves" Canvas.Top="150" Width="150" Foreground="#FFFAFAFA" FontSize="15"/>
+                                <TextBlock DockPanel.Dock="Top" TextTrimming="CharacterEllipsis"  Text="Running with the Wolves" Canvas.Top="150" Width="150" Foreground="#FFFAFAFA" FontSize="15"/>
                                 <Button x:Name="edit_btn" DockPanel.Dock="Bottom" Style="{DynamicResource player_button}" Background="#FF131313" Foreground="#FFFAFAFA" Margin="10,5,10,0" FontSize="12" Content="EDIT" Padding="25,5" Click="edit_btn_Click"/>
-                                <TextBlock TextWrapping="Wrap" Text="Aurora" Canvas.Top="150" Width="150" Foreground="#FFFAFAFA" FontSize="11"/>
+                                <TextBlock TextTrimming="CharacterEllipsis"  Text="Aurora" Canvas.Top="150" Width="150" Foreground="#FFFAFAFA" FontSize="11"/>
                             </DockPanel>
                         </Canvas>
                     </WrapPanel>

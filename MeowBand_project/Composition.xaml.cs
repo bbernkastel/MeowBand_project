@@ -16,22 +16,18 @@ using System.Windows.Shapes;
 namespace MeowBand_project
 {
     /// <summary>
-    /// Interaction logic for Home.xaml
+    /// Interaction logic for Composition.xaml
     /// </summary>
-    public partial class Home : UserControl
+    public partial class Composition : UserControl
     {
-        public Home()
+        public Composition()
         {
             InitializeComponent();
-
         }
 
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        private void go_back_btn_Click(object sender, RoutedEventArgs e)
         {
-            Uri src = new Uri("Composition.xaml", UriKind.Relative);
-            (Application.Current.MainWindow.FindName("home_frame") as Frame).Source = src;
-
-
+            (Application.Current.MainWindow.FindName("home_frame") as Frame).NavigationService.GoBack();
         }
     }
 }

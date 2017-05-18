@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="MeowBand_project.Genres"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MeowBand_project"
+             mc:Ignorable="d" 
+             d:DesignHeight="648.734" d:DesignWidth="765.823">
+    <Grid Background="#FF292929">
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Template="{DynamicResource meow_scrollbar}">
+            <DockPanel LastChildFill="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Label DockPanel.Dock="Top" Content="Genres" Foreground="#FFFAFAFA" FontSize="18" Margin="10,0" Grid.Row="0"/>
+                    <Grid Grid.Row="1" Margin="15,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel LastChildFill="True" Grid.Row="0">
+                            <Label Content="Input new genre's name" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="genrename_tb" MaxLength="255"  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        
+                        <DockPanel Grid.Row="1">
+                            <WrapPanel Orientation="Horizontal">
+                                <Button Padding="30,8" Content="ADD GENRE" Style="{DynamicResource player_button}" DockPanel.Dock="Left" Margin="10,3,10,10" FontSize="13" Foreground="#FFFAFAFA" Background="#FF131313"/>
+                                <Button Padding="30,8" Content="CLEAR" Style="{DynamicResource player_button}"  Margin="10,3,10,10" FontSize="13" Foreground="#FFFAFAFA" Background="#FF131313"/>
+                            </WrapPanel>
+                        </DockPanel>
+                    </Grid>
+
+                    <WrapPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="15,0" Grid.Column="1" Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Added genres" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5"/>
+                            <DockPanel LastChildFill="True" Grid.Row="1">
+                                <ScrollViewer Template="{DynamicResource meow_scrollbar}" VerticalScrollBarVisibility="Visible" MinHeight="200" MinWidth="200" Background="#FF212121">
+                                    <TextBlock Foreground="#FFA4A4A4" FontSize="13" Padding="5" >
+                                        Chiptune<LineBreak/>
+                                        And all the genres
+                                    </TextBlock>
+                                </ScrollViewer>
+                            </DockPanel>
+
+
+                        </Grid>
+                    </WrapPanel>
+                </Grid>
+            </DockPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

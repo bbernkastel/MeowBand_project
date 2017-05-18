@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="MeowBand_project.Composition"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MeowBand_project"
+             mc:Ignorable="d" 
+             d:DesignHeight="615" d:DesignWidth="680">
+    <Grid Background="#FF292929">
+
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Template="{DynamicResource meow_scrollbar}" Margin="0,10,0,0" DockPanel.Dock="Top" >
+            <DockPanel LastChildFill="True">
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="compositionname_lb"  Content="Composition name by Author" Foreground="#FFFAFAFA" FontSize="18" Margin="10,0" Grid.Column="0"/>
+                    <Button x:Name="go_back_btn" Style="{DynamicResource player_button}" Content="GO BACK" Grid.Column="1" Padding="10,5" FontSize="12" Background="#FF131313" Foreground="#FFFAFAFA" Click="go_back_btn_Click" />
+                </Grid>
+                <Grid  DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="cover_img" Width="150" Height="150" Stretch="Uniform" Source="Resources\Image\albumcover.png" Margin="15,5,15,15" VerticalAlignment="Top" Grid.Column="0"/>
+
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Uploaded by:"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="0"/>
+                        <TextBlock Grid.Column="2"  FontSize="15" Grid.Row="0" VerticalAlignment="Center">
+                                <Hyperlink x:Name="username_link" Foreground="#FFFAFAFA" >
+                                Username
+                                </Hyperlink>
+                        </TextBlock>
+                        <Label Content="Name:"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="1"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis" Grid.Row="1"  Grid.Column="2" Margin="-5,0,0,0">
+                                <Label Foreground="#FFFAFAFA" Content="Composition name"/>
+                        </TextBlock>
+                        <Label Content="Artist(s):"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="2"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis" Grid.Row="2"  Grid.Column="2" Margin="-5,0,0,0">
+                                <Label x:Name="artists_lb" Foreground="#FFFAFAFA" Content="Artists' names"/>
+                        </TextBlock>
+                        <Label Content="Composer(s):"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="3"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis" Grid.Row="3"  Grid.Column="2" Margin="-5,0,0,0">
+                                <Label x:Name="composers_lb" Foreground="#FFFAFAFA" Content="Composers' names"/>
+                        </TextBlock>
+                        <Label Content="Album:"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="4"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis" Grid.Row="4"  Grid.Column="2" Margin="-5,0,0,0">
+                                <Label x:Name="album_lb" Foreground="#FFFAFAFA" Content="Album name"/>
+                        </TextBlock>
+                        <Label Content="Year:"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="5"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis" Grid.Row="5"  Grid.Column="2" Margin="-5,0,0,0">
+                                <Label x:Name="year_lb" Foreground="#FFFAFAFA" Content="Year"/>
+                        </TextBlock>
+                        <Label Content="Genre(s):"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="6"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis" Grid.Row="6"  Grid.Column="2" Margin="-5,0,0,0">
+                                <Label x:Name="genres_lb" Foreground="#FFFAFAFA" Content="Genres"/>
+                        </TextBlock>
+                        <Label Content="Duration:"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="7"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis" Grid.Row="7"  Grid.Column="2" Margin="-5,0,0,0">
+                                <Label x:Name="duration_lb" Foreground="#FFFAFAFA" Content="0:00:00"/>
+                        </TextBlock>
+                        <Label Content="Description:"  FontSize="15" Foreground="#FFFAFAFA" Grid.Column="0" Grid.Row="8"/>
+                        <TextBlock  FontSize="15" TextWrapping="Wrap" Grid.Row="8"  Grid.Column="2" Foreground="#FFFAFAFA" Margin="0,5,10,0" TextAlignment="Justify">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In viverra lorem ante. Ut at nisi ac nisl rhoncus mollis.
+                        Sed pellentesque varius congue. Fusce interdum tempor erat, sit amet venenatis elit. Phasellus et rutrum nunc. Maecenas venenatis massa in euismod ornare.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eleifend mi eget diam condimentum fringilla.
+                        </TextBlock>
+                    </Grid>
+                </Grid>
+                <Label DockPanel.Dock="Top" Content="Commentaries" Foreground="#FFFAFAFA" FontSize="18" Margin="10,0" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel LastChildFill="True" Height="auto" Margin="10" Grid.Row="0">
+                        <TextBlock DockPanel.Dock="Top" FontSize="15" Foreground="#FFFAFAFA" TextWrapping="Wrap" >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In viverra lorem ante. Ut at nisi ac nisl rhoncus mollis.
+                        Sed pellentesque varius congue. Fusce interdum tempor erat, sit amet venenatis elit. Phasellus et rutrum nunc. Maecenas venenatis massa in euismod ornare.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eleifend mi eget diam condimentum fringilla.
+                        </TextBlock>
+                        <Label x:Name="author_lb" Content="Author username" DockPanel.Dock="Left" FontSize="13" Foreground="#FFa4a4a4" Height="30" />
+                        <Label x:Name="date_lb" Content="Date" DockPanel.Dock="Right" HorizontalAlignment="Right" FontSize="13" Foreground="#FFa4a4a4" Height="30"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="True" Height="auto" Margin="10" Grid.Row="1">
+                        <TextBlock DockPanel.Dock="Top" FontSize="15" Foreground="#FFFAFAFA" TextWrapping="Wrap" >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In viverra lorem ante. Ut at nisi ac nisl rhoncus mollis.
+                        Sed pellentesque varius congue. Fusce interdum tempor erat, sit amet venenatis elit. Phasellus et rutrum nunc. Maecenas venenatis massa in euismod ornare.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eleifend mi eget diam condimentum fringilla.
+                        </TextBlock>
+                        <Label x:Name="author_lb2" Content="Author username" DockPanel.Dock="Left" FontSize="13" Foreground="#FFa4a4a4" Height="30" />
+                        <Label x:Name="date_lb2" Content="Date" DockPanel.Dock="Right" HorizontalAlignment="Right" FontSize="13" Foreground="#FFa4a4a4" Height="30"/>
+                    </DockPanel>
+                </Grid>
+        </DockPanel>
+            </ScrollViewer>
+
+    </Grid>
+</UserControl>

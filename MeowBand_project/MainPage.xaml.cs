@@ -31,6 +31,8 @@ namespace MeowBand_project
             timer.Start();
             meowPlayer.Source = new Uri(@"Resources\LoginScreenLoop.mp3", UriKind.Relative);
 
+            
+
         }
         private bool mediaPlayerIsPlaying = false;
         private bool userIsDraggingSlider = false;
@@ -45,7 +47,7 @@ namespace MeowBand_project
                 composProgress.Value = meowPlayer.Position.TotalSeconds;
             }
         }
-        
+
         private void Play_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = (meowPlayer != null) && (meowPlayer.Source != null);
@@ -107,5 +109,9 @@ namespace MeowBand_project
             meowPlayer.Position = TimeSpan.FromSeconds(composProgress.Value);
         }
 
+        private void player_play_Click(object sender, RoutedEventArgs e)
+        {
+            meowPlayer.Play();
+        }
     }
 }

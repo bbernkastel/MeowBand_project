@@ -103,6 +103,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <DockPanel LastChildFill="True" Grid.Row="0">
                                 <Button x:Name="cover_btn" DockPanel.Dock="Top" Content="ADD ALBUM COVER" Style="{DynamicResource player_button}" Background="#FF6A6A6A" Foreground="#FFFAFAFA" Padding="20,5" Click="cover_btn_Click" Margin="0,0,0,10"/>
@@ -126,6 +127,12 @@
                                          BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
                                          TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
                             </DockPanel>
+                            <DockPanel LastChildFill="True" Grid.Row="2" Margin="0,0,0,10">
+                                <Label Content="Is this composition visible for other users?" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="left"/>
+                                <CheckBox x:Name="is_visible" DockPanel.Dock="Left" Margin="10,5,0,0" Foreground="#FF131313"/>
+                            </DockPanel>
+                            
+                                
                         </Grid>
                     </WrapPanel>
                 </Grid>
