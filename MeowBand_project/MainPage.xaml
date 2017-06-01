@@ -1,0 +1,189 @@
+﻿<Window x:Class="MeowBand_project.MainPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MeowBand_project"
+        xmlns:controls="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit"
+        mc:Ignorable="d"
+        Title="MeowBand: Indie Music Application" Height="600" Width="900" Background="#FF212121" Icon="Resources/Image/cat-black-face-32-icon.png" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="500">
+    <Window.CommandBindings>
+        <CommandBinding Command="MediaCommands.Play" CanExecute="Play_CanExecute" Executed="Play_Executed" />
+        <CommandBinding Command="MediaCommands.Pause" CanExecute="Pause_CanExecute" Executed="Pause_Executed" />
+        <CommandBinding Command="MediaCommands.Stop" CanExecute="Stop_CanExecute" Executed="Stop_Executed" />
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Top" Background="#FF212121" Height="80">
+            <DockPanel LastChildFill="True">
+                <Image DockPanel.Dock="left" x:Name="image" HorizontalAlignment="Left" Height="52" Margin="24,15,24,0" VerticalAlignment="Top" Width="160" Source="Resources/Image/meowbandsignup.png"/>
+                <Viewbox DockPanel.Dock="left" Width="50"/>
+                <Label Content="Search" Foreground="#FFFAFAFA" FontSize="18" Padding="5,5,5,0" Margin="0,21,10,0" />
+                <TextBlock x:Name="welcometext_lb" TextWrapping="Wrap" TextAlignment="Center" DockPanel.Dock="right" Foreground="#FFFAFAFA" FontSize="15" Padding="10,20" MinWidth="200" MaxWidth="300" Margin="10,0">
+                    Welcome back, 30symbolslengthmaximumdesuwurp
+                </TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="search_tb" MaxLength="200"  HorizontalAlignment="Stretch"
+                             AcceptsReturn="True"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             Height="35" TextWrapping="Wrap" VerticalAlignment="Top"
+                             BorderThickness="0" Background="#FF292929" Foreground="#FFFAFAFA" FontSize="18"
+                             TextOptions.TextFormattingMode="Display" Margin="1,21,1,21" Padding="10,5,10,5" Grid.Column="0"/>
+                </Grid>
+            </DockPanel>
+        </Grid>
+        <Grid x:Name="player_grid" MouseWheel="Grid_MouseWheel" DockPanel.Dock="Bottom" Height="50" Background="#FF1A1A1A">
+            <DockPanel LastChildFill="True">
+                <Grid DockPanel.Dock="right" Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="player_stop" Grid.Column="0" Content="stop" Margin="0,0,10,0" BorderThickness="0"  Command="MediaCommands.Stop"
+                        Style="{DynamicResource player_button}" Foreground="Transparent">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources\Image\player\stop-16.png" Stretch="None"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Command="MediaCommands.Play" x:Name="player_play" Grid.Column="1" Content="play" Margin="0,0,10,0" BorderThickness="0"  
+                        Style="{DynamicResource player_button}" Foreground="Transparent" Click="player_play_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/Image/player/play-5-16.png" Stretch="None"/>
+                        </Button.Background>
+                    </Button>
+
+                    <Button x:Name="player_pause" Grid.Column="3" Content="pause" Margin="0,0,10,0" BorderThickness="0" Command="MediaCommands.Pause" 
+                        Style="{DynamicResource player_button}" Foreground="Transparent">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources\Image\player\media-pause-16.png" Stretch="None"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+                <Image Source="Resources\Image\player\volume-16.png" Stretch="None" DockPanel.Dock="left" Margin="10,0,0,0" />
+                <MediaElement Name="meowPlayer"  LoadedBehavior="Manual" Stretch="None" DockPanel.Dock="Right" Visibility="Hidden" />
+                <TextBlock DockPanel.Dock="Right" Name="lblProgressStatus" FontSize="15" Margin="0,15,10,0" Foreground="#FFFAFAFA">00:00:00</TextBlock>
+                <ProgressBar Name="pbVolume" Width="50" Height="12" Maximum="1" Value="{Binding ElementName=meowPlayer, Path=Volume}" Margin="10,0,0,0" Style="{DynamicResource meow_volume}" Background="#FF292929" />
+                <Slider DockPanel.Dock="Right" Name="composProgress" ValueChanged="composProgress_ValueChanged" DragEnter="composProgress_DragEnter" DragLeave="composProgress_DragLeave" Width="200" Margin="0,14,10,0" DragOver="composProgress_DragOver" Style="{DynamicResource meow_slider}" />
+                <Label x:Name="songname_lb" DockPanel.Dock="Top" Content="Song's name" Foreground="#FFFAFAFA" FontSize="15" Margin="10,0,0,0"/>
+                <Label x:Name="artists_lb" DockPanel.Dock="Bottom" Content="Artist(s)" Foreground="#FFFAFAFA" Padding="5,0" Margin="10,0,0,0"/>
+            </DockPanel>
+        </Grid>
+        <TabControl BorderThickness="0" Background="#FF292929" TabStripPlacement="Left" Padding="0" Foreground="#FFFAFAFA" >
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid Name="Panel">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,5"
+                                        Width="180" 
+                                        />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Panel" Property="Background" Value="#FF292929"  />
+                                        <Setter TargetName="Panel" Property="TextBlock.Foreground" Value="#FFFAFAFA"/>
+                                        <Setter TargetName="Panel" Property="TextBlock.FontSize" Value="15"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Panel" Property="Background" Value="#FF212121"  />
+                                        <Setter TargetName="Panel" Property="TextBlock.Foreground" Value="#FFFAFAFA"/>
+                                        <Setter TargetName="Panel" Property="TextBlock.FontSize" Value="15"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem x:Name="Hometab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\home-7-16.png"/>
+                        <Label Content="Home" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="home_frame" Source="Home.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Musictab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\headphones-8-16.png"/>
+                        <Label Content="Music" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="music_frame" Source="Music.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Newtab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\guitar-16.png"/>
+                        <Label Content="New" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="new_frame" Source="New.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Uploadtab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\data-transfer-download-16.png"/>
+                        <Label Content="Upload" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="upload_frame" Source="Upload.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="MyUploadstab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\music-record-16.png"/>
+                        <Label Content="My uploads" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="myuploads_frame" Source="MyUploads.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Favoritestab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\favorite-3-16.png"/>
+                        <Label Content="My favorites" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="myfavs_frame" Source="MyFavs.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Profiletab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\guest-16.png"/>
+                        <Label Content="My profile" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="myprofile_frame" Source="MyProfile.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Userstab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\group-16.png"/>
+                        <Label Content="Users" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="users_frame" Source="Users.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+            <TabItem x:Name="Genretab" Margin="-2,-2,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="16" Source="Resources\Image\menu\treble-clef-16.png"/>
+                        <Label Content="Genres" Foreground="#FFFAFAFA" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="genres_frame" Source="Genres.xaml" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

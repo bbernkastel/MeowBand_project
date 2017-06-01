@@ -23,5 +23,12 @@ namespace MeowBand_project
         {
             InitializeComponent();
         }
+
+        private void signup_btn_Click(object sender, RoutedEventArgs e)
+        {
+            SignUp signUp = new SignUp();
+            signUp.Show();
+            Close();
+        }
     }
 }

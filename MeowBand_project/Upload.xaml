@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="MeowBand_project.Upload"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MeowBand_project"
+             mc:Ignorable="d" 
+             d:DesignHeight="570" d:DesignWidth="665">
+    <Grid Background="#FF292929">
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Template="{DynamicResource meow_scrollbar}">
+            <DockPanel LastChildFill="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Label DockPanel.Dock="Top" Content="Upload music" Foreground="#FFFAFAFA" FontSize="18" Margin="10,0" Grid.Row="0"/>
+                    <Grid Grid.Row="1" Margin="15,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel LastChildFill="True" Grid.Row="0">
+                            <Label x:Name="artists_lb" Content="Artist(s)" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="artists_tb" MaxLength="255"  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="1">
+                            <Label x:Name="composers_lb" Content="Composer(s)" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="composers_tb" MaxLength="255"  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="2">
+                            <Label x:Name="name_lb" Content="Song's name" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="name_tb" MaxLength="255"  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="3">
+                            <Label x:Name="album_lb" Content="Album's name" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="album_tb" MaxLength="255" HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="4">
+                            <Label x:Name="description_lb" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="description_tb" HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="5">
+                            <Label x:Name="year_lb" Content="Year" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <ComboBox DockPanel.Dock="Top" Margin="0,0,0,5" SelectionChanged="ComboBox_SelectionChanged" Style="{DynamicResource combo_meow}" HorizontalAlignment="Left" Width="200"/>
+                            
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="6">
+                            <Label x:Name="genres_lb" Content="Genre(s)" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <ComboBox x:Name="genre_cb" DockPanel.Dock="Top" Margin="0,0,0,5" SelectionChanged="ComboBox_SelectionChanged" Style="{DynamicResource combo_meow}" HorizontalAlignment="Left" Width="230"/>
+                            <TextBox x:Name="genres_tb" HorizontalAlignment="Stretch"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel Grid.Row="7">
+                            <WrapPanel Orientation="Horizontal">
+                                <Button Padding="30,8" Content="UPLOAD" Style="{DynamicResource player_button}" DockPanel.Dock="Left" Margin="10,3,10,10" FontSize="13" Foreground="#FFFAFAFA" Background="#FF131313"/>
+                                <Button Padding="30,8" Content="CLEAR" Style="{DynamicResource player_button}"  Margin="10,3,10,10" FontSize="13" Foreground="#FFFAFAFA" Background="#FF131313"/>
+                            </WrapPanel>
+                        </DockPanel>
+                    </Grid>
+                    
+                    <WrapPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="15,0" Grid.Column="1" Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <DockPanel LastChildFill="True" Grid.Row="0">
+                                <Button x:Name="cover_btn" DockPanel.Dock="Top" Content="ADD ALBUM COVER" Style="{DynamicResource player_button}" Background="#FF6A6A6A" Foreground="#FFFAFAFA" Padding="20,5" Click="cover_btn_Click" Margin="0,0,0,10"/>
+                                <Image x:Name="cover_img" DockPanel.Dock="Top" Width="150" Height="150" Stretch="Uniform" Source="Resources\Image\albumcover.png" Margin="0,5,0,15"/>
+                                <Label Content="Path" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                                <TextBox x:Name="filename_tb" DockPanel.Dock="Top" MaxLength="255" HorizontalAlignment="Stretch"
+                                         AcceptsReturn="True" Width="280"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                            </DockPanel>
+
+                            <DockPanel LastChildFill="True" Grid.Row="1" Margin="0,20,0,0">
+                                <Button x:Name="compos_btn" DockPanel.Dock="Top" Content="ADD MUSIC FILE" Style="{DynamicResource player_button}" Background="#FF6A6A6A" Foreground="#FFFAFAFA" Padding="20,5" Margin="0,0,0,10" Click="compos_btn_Click"/>
+                                <Label Content="Path" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                                <TextBox x:Name="filenamecompos_tb" DockPanel.Dock="Top" MaxLength="255" HorizontalAlignment="Stretch"
+                                         AcceptsReturn="True" Width="280"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                            </DockPanel>
+                            <DockPanel LastChildFill="True" Grid.Row="2" Margin="0,0,0,10">
+                                <Label Content="Is this composition visible for other users?" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="left"/>
+                                <CheckBox x:Name="is_visible" DockPanel.Dock="Left" Margin="10,5,0,0" Foreground="#FF131313"/>
+                            </DockPanel>
+                            
+                                
+                        </Grid>
+                    </WrapPanel>
+                </Grid>
+            </DockPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

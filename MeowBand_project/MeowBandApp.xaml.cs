@@ -23,7 +23,6 @@ namespace MeowBand_project
         public MainWindow()
         {
             InitializeComponent();
-           // _mainframe.NavigationService.Navigate(new Uri("SignUp.xaml", UriKind.Relative));
 
         }
     }

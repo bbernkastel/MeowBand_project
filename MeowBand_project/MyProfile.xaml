@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="MeowBand_project.MyProfile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MeowBand_project"
+             mc:Ignorable="d" 
+             d:DesignHeight="857.114" d:DesignWidth="688.937">
+    <Grid Background="#FF292929">
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Template="{DynamicResource meow_scrollbar}">
+            <DockPanel LastChildFill="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Label DockPanel.Dock="Top" Content="Username's profile" Foreground="#FFFAFAFA" FontSize="18" Margin="10,0" Grid.Row="0"/>
+                    <Grid Grid.Row="1" Margin="15,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel LastChildFill="True" Grid.Row="0">
+                            <Label Content="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="username_tb" MaxLength="30"  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="1">
+                            <Label Content="Firstname" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="firstname_tb" MaxLength="50"  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="2">
+                            <Label Content="Lastname" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                            <TextBox x:Name="lastname_tb" MaxLength="30"  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Height="30" TextWrapping="NoWrap" VerticalAlignment="Top"
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Grid.Row="3" Margin="0,0,0,10">
+                            <Label Content="Superuser" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="left"/>
+                            <CheckBox x:Name="is_superuser" DockPanel.Dock="Left" Margin="10,5,0,0" Foreground="#FF131313"/>
+                            <Label Content="Disactivated" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="50,5,5,5" DockPanel.Dock="left"/>
+                            <CheckBox x:Name="is_disactivated" DockPanel.Dock="Left" Margin="10,5,0,0" Foreground="#FF131313"/>
+                        </DockPanel>
+
+                        <DockPanel LastChildFill="True" Grid.Row="7">
+                            <WrapPanel Orientation="Horizontal">
+                            <Button x:Name="profilechange_btn" Padding="30,8" Content="SAVE PROFILE CHANGES" Style="{DynamicResource player_button}" DockPanel.Dock="Left" Margin="10,3,10,10" FontSize="13" Foreground="#FFFAFAFA" Background="#FF131313"/>
+                            <Button x:Name="cancel_btn" Padding="30,8" Content="CANCEL" Style="{DynamicResource player_button}" DockPanel.Dock="Left" Margin="10,3,10,10" FontSize="13" Foreground="#FFFAFAFA" Background="#FF131313" IsCancel="True"/>
+                            </WrapPanel>
+                        </DockPanel>
+                    </Grid><Label  Content="Change password"  Foreground="#FFFAFAFA" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top" FontSize="18"  Grid.Column="1"/>
+                    <DockPanel LastChildFill="True" Grid.Row="1" Grid.Column="1" Margin="15,0,0,0">
+                        <Grid Margin="15,0,0,0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <DockPanel LastChildFill="True" Grid.Row="0">
+                                <Label Content="Current password" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                                <PasswordBox x:Name="password_pb" MaxLength="30"  HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Height="30"  
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5" DockPanel.Dock="Top" Width="250"/>
+                            </DockPanel>
+                            <DockPanel LastChildFill="True" Grid.Row="1">
+                                <Label Content="New password" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                                <PasswordBox x:Name="newpassword_pb" MaxLength="30"  HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Height="30"  
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5" DockPanel.Dock="Top" Width="250"/>
+                            </DockPanel>
+                            <DockPanel LastChildFill="True" Grid.Row="3">
+                                <Label Content="Re-type new password" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFA4A4A4" TextOptions.TextFormattingMode="Display" Padding="3,5,5,5" DockPanel.Dock="Top"/>
+                                <PasswordBox x:Name="password2_pb" MaxLength="30"  HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Height="30"  
+                                         BorderThickness="0" Background="#FF212121" Foreground="#FFFAFAFA" FontSize="15"
+                                         TextOptions.TextFormattingMode="Display" Margin="0,0,0,10" Padding="10,5,10,5" DockPanel.Dock="Top" Width="250"/>
+                            </DockPanel>
+                            <DockPanel LastChildFill="True" Grid.Row="4">
+                                <Button x:Name="changepass_btn" Padding="30,8" Content="CHANGE PASSWORD" Style="{DynamicResource player_button}" DockPanel.Dock="Left" Margin="10,3,10,10" FontSize="13" Foreground="#FFFAFAFA" Background="#FF131313"/>
+                            </DockPanel>
+                        </Grid>
+                    </DockPanel>
+                </Grid>
+            </DockPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>
