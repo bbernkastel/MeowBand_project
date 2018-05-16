@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MeowBand_project.Properties
+namespace Meow_Band.Properties
 {
 
 

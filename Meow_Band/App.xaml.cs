@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MeowBand_project
+namespace Meow_Band
 {
     /// <summary>
     /// Interaction logic for App.xaml

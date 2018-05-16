@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t_comment">
+          <Key>
+            <PropertyRef Name="id_comment" />
+          </Key>
+          <Property Name="id_comment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="id_composition" Type="int" Nullable="false" />
+          <Property Name="comment_text" Type="text" />
+          <Property Name="comment_date" Type="date" />
+        </EntityType>
+        <EntityType Name="t_composition">
+          <Key>
+            <PropertyRef Name="id_composition" />
+          </Key>
+          <Property Name="id_composition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="duration" Type="bigint" />
+          <Property Name="description" Type="text" />
+          <Property Name="artists" Type="varchar" MaxLength="255" />
+          <Property Name="composers" Type="varchar" MaxLength="255" />
+          <Property Name="album" Type="varchar" MaxLength="255" />
+          <Property Name="compos_year" Type="int" />
+          <Property Name="is_visible" Type="bit" />
+          <Property Name="composition_url" Type="nvarchar(max)" />
+          <Property Name="albumcover" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="t_compositiongenre">
+          <Key>
+            <PropertyRef Name="id_composgenre" />
+          </Key>
+          <Property Name="id_composgenre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_genre" Type="int" Nullable="false" />
+          <Property Name="id_composition" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_genre">
+          <Key>
+            <PropertyRef Name="id_genre" />
+          </Key>
+          <Property Name="id_genre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userlogin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="userpass" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="superuser" Type="bit" />
+          <Property Name="disactivated" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_userlikes">
+          <Key>
+            <PropertyRef Name="id_userlike" />
+          </Key>
+          <Property Name="id_userlike" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="id_composition" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_comment_compos">
+          <End Role="t_composition" Type="Self.t_composition" Multiplicity="1" />
+          <End Role="t_comment" Type="Self.t_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_composition">
+              <PropertyRef Name="id_composition" />
+            </Principal>
+            <Dependent Role="t_comment">
+              <PropertyRef Name="id_composition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comment_user">
+          <End Role="t_user" Type="Self.t_user" Multiplicity="1" />
+          <End Role="t_comment" Type="Self.t_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="t_comment">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_compos_user">
+          <End Role="t_user" Type="Self.t_user" Multiplicity="1" />
+          <End Role="t_composition" Type="Self.t_composition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="t_composition">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_compositiongenre_compos">
+          <End Role="t_composition" Type="Self.t_composition" Multiplicity="1" />
+          <End Role="t_compositiongenre" Type="Self.t_compositiongenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_composition">
+              <PropertyRef Name="id_composition" />
+            </Principal>
+            <Dependent Role="t_compositiongenre">
+              <PropertyRef Name="id_composition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_compositiongenre_user">
+          <End Role="t_genre" Type="Self.t_genre" Multiplicity="1" />
+          <End Role="t_compositiongenre" Type="Self.t_compositiongenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_genre">
+              <PropertyRef Name="id_genre" />
+            </Principal>
+            <Dependent Role="t_compositiongenre">
+              <PropertyRef Name="id_genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userlikes_compos">
+          <End Role="t_composition" Type="Self.t_composition" Multiplicity="1" />
+          <End Role="t_userlikes" Type="Self.t_userlikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_composition">
+              <PropertyRef Name="id_composition" />
+            </Principal>
+            <Dependent Role="t_userlikes">
+              <PropertyRef Name="id_composition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userlikes_user">
+          <End Role="t_user" Type="Self.t_user" Multiplicity="1" />
+          <End Role="t_userlikes" Type="Self.t_userlikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="t_userlikes">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBContextStoreContainer">
+          <EntitySet Name="t_comment" EntityType="Self.t_comment" Schema="meowband" store:Type="Tables" />
+          <EntitySet Name="t_composition" EntityType="Self.t_composition" Schema="meowband" store:Type="Tables" />
+          <EntitySet Name="t_compositiongenre" EntityType="Self.t_compositiongenre" Schema="meowband" store:Type="Tables" />
+          <EntitySet Name="t_genre" EntityType="Self.t_genre" Schema="meowband" store:Type="Tables" />
+          <EntitySet Name="t_user" EntityType="Self.t_user" Schema="meowband" store:Type="Tables" />
+          <EntitySet Name="t_userlikes" EntityType="Self.t_userlikes" Schema="meowband" store:Type="Tables" />
+          <AssociationSet Name="fk_comment_compos" Association="Self.fk_comment_compos">
+            <End Role="t_composition" EntitySet="t_composition" />
+            <End Role="t_comment" EntitySet="t_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comment_user" Association="Self.fk_comment_user">
+            <End Role="t_user" EntitySet="t_user" />
+            <End Role="t_comment" EntitySet="t_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_compos_user" Association="Self.fk_compos_user">
+            <End Role="t_user" EntitySet="t_user" />
+            <End Role="t_composition" EntitySet="t_composition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_compositiongenre_compos" Association="Self.fk_compositiongenre_compos">
+            <End Role="t_composition" EntitySet="t_composition" />
+            <End Role="t_compositiongenre" EntitySet="t_compositiongenre" />
+          </AssociationSet>
+          <AssociationSet Name="fk_compositiongenre_user" Association="Self.fk_compositiongenre_user">
+            <End Role="t_genre" EntitySet="t_genre" />
+            <End Role="t_compositiongenre" EntitySet="t_compositiongenre" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userlikes_compos" Association="Self.fk_userlikes_compos">
+            <End Role="t_composition" EntitySet="t_composition" />
+            <End Role="t_userlikes" EntitySet="t_userlikes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userlikes_user" Association="Self.fk_userlikes_user">
+            <End Role="t_user" EntitySet="t_user" />
+            <End Role="t_userlikes" EntitySet="t_userlikes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="t_comment">
+          <Key>
+            <PropertyRef Name="id_comment" />
+          </Key>
+          <Property Name="id_comment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="id_composition" Type="Int32" Nullable="false" />
+          <Property Name="comment_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="comment_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="t_composition" Relationship="Self.fk_comment_compos" FromRole="t_comment" ToRole="t_composition" />
+          <NavigationProperty Name="t_user" Relationship="Self.fk_comment_user" FromRole="t_comment" ToRole="t_user" />
+        </EntityType>
+        <EntityType Name="t_composition">
+          <Key>
+            <PropertyRef Name="id_composition" />
+          </Key>
+          <Property Name="id_composition" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duration" Type="Int64" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="artists" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="composers" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="album" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="compos_year" Type="Int32" />
+          <Property Name="is_visible" Type="Boolean" />
+          <Property Name="composition_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="albumcover" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="t_comment" Relationship="Self.fk_comment_compos" FromRole="t_composition" ToRole="t_comment" />
+          <NavigationProperty Name="t_user" Relationship="Self.fk_compos_user" FromRole="t_composition" ToRole="t_user" />
+          <NavigationProperty Name="t_compositiongenre" Relationship="Self.fk_compositiongenre_compos" FromRole="t_composition" ToRole="t_compositiongenre" />
+          <NavigationProperty Name="t_userlikes" Relationship="Self.fk_userlikes_compos" FromRole="t_composition" ToRole="t_userlikes" />
+        </EntityType>
+        <EntityType Name="t_compositiongenre">
+          <Key>
+            <PropertyRef Name="id_composgenre" />
+          </Key>
+          <Property Name="id_composgenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_genre" Type="Int32" Nullable="false" />
+          <Property Name="id_composition" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_composition" Relationship="Self.fk_compositiongenre_compos" FromRole="t_compositiongenre" ToRole="t_composition" />
+          <NavigationProperty Name="t_genre" Relationship="Self.fk_compositiongenre_user" FromRole="t_compositiongenre" ToRole="t_genre" />
+        </EntityType>
+        <EntityType Name="t_genre">
+          <Key>
+            <PropertyRef Name="id_genre" />
+          </Key>
+          <Property Name="id_genre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_compositiongenre" Relationship="Self.fk_compositiongenre_user" FromRole="t_genre" ToRole="t_compositiongenre" />
+        </EntityType>
+        <EntityType Name="t_user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userlogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userpass" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="superuser" Type="Boolean" />
+          <Property Name="disactivated" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="t_comment" Relationship="Self.fk_comment_user" FromRole="t_user" ToRole="t_comment" />
+          <NavigationProperty Name="t_composition" Relationship="Self.fk_compos_user" FromRole="t_user" ToRole="t_composition" />
+          <NavigationProperty Name="t_userlikes" Relationship="Self.fk_userlikes_user" FromRole="t_user" ToRole="t_userlikes" />
+        </EntityType>
+        <EntityType Name="t_userlikes">
+          <Key>
+            <PropertyRef Name="id_userlike" />
+          </Key>
+          <Property Name="id_userlike" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="id_composition" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_composition" Relationship="Self.fk_userlikes_compos" FromRole="t_userlikes" ToRole="t_composition" />
+          <NavigationProperty Name="t_user" Relationship="Self.fk_userlikes_user" FromRole="t_userlikes" ToRole="t_user" />
+        </EntityType>
+        <Association Name="fk_comment_compos">
+          <End Role="t_composition" Type="Self.t_composition" Multiplicity="1" />
+          <End Role="t_comment" Type="Self.t_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_composition">
+              <PropertyRef Name="id_composition" />
+            </Principal>
+            <Dependent Role="t_comment">
+              <PropertyRef Name="id_composition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comment_user">
+          <End Role="t_user" Type="Self.t_user" Multiplicity="1" />
+          <End Role="t_comment" Type="Self.t_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="t_comment">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_compos_user">
+          <End Role="t_user" Type="Self.t_user" Multiplicity="1" />
+          <End Role="t_composition" Type="Self.t_composition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="t_composition">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_compositiongenre_compos">
+          <End Role="t_composition" Type="Self.t_composition" Multiplicity="1" />
+          <End Role="t_compositiongenre" Type="Self.t_compositiongenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_composition">
+              <PropertyRef Name="id_composition" />
+            </Principal>
+            <Dependent Role="t_compositiongenre">
+              <PropertyRef Name="id_composition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userlikes_compos">
+          <End Role="t_composition" Type="Self.t_composition" Multiplicity="1" />
+          <End Role="t_userlikes" Type="Self.t_userlikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_composition">
+              <PropertyRef Name="id_composition" />
+            </Principal>
+            <Dependent Role="t_userlikes">
+              <PropertyRef Name="id_composition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_compositiongenre_user">
+          <End Role="t_genre" Type="Self.t_genre" Multiplicity="1" />
+          <End Role="t_compositiongenre" Type="Self.t_compositiongenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_genre">
+              <PropertyRef Name="id_genre" />
+            </Principal>
+            <Dependent Role="t_compositiongenre">
+              <PropertyRef Name="id_genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userlikes_user">
+          <End Role="t_user" Type="Self.t_user" Multiplicity="1" />
+          <End Role="t_userlikes" Type="Self.t_userlikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="t_userlikes">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_Context" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t_comment" EntityType="Self.t_comment" />
+          <EntitySet Name="t_composition" EntityType="Self.t_composition" />
+          <EntitySet Name="t_compositiongenre" EntityType="Self.t_compositiongenre" />
+          <EntitySet Name="t_genre" EntityType="Self.t_genre" />
+          <EntitySet Name="t_user" EntityType="Self.t_user" />
+          <EntitySet Name="t_userlikes" EntityType="Self.t_userlikes" />
+          <AssociationSet Name="fk_comment_compos" Association="Self.fk_comment_compos">
+            <End Role="t_composition" EntitySet="t_composition" />
+            <End Role="t_comment" EntitySet="t_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comment_user" Association="Self.fk_comment_user">
+            <End Role="t_user" EntitySet="t_user" />
+            <End Role="t_comment" EntitySet="t_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_compos_user" Association="Self.fk_compos_user">
+            <End Role="t_user" EntitySet="t_user" />
+            <End Role="t_composition" EntitySet="t_composition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_compositiongenre_compos" Association="Self.fk_compositiongenre_compos">
+            <End Role="t_composition" EntitySet="t_composition" />
+            <End Role="t_compositiongenre" EntitySet="t_compositiongenre" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userlikes_compos" Association="Self.fk_userlikes_compos">
+            <End Role="t_composition" EntitySet="t_composition" />
+            <End Role="t_userlikes" EntitySet="t_userlikes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_compositiongenre_user" Association="Self.fk_compositiongenre_user">
+            <End Role="t_genre" EntitySet="t_genre" />
+            <End Role="t_compositiongenre" EntitySet="t_compositiongenre" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userlikes_user" Association="Self.fk_userlikes_user">
+            <End Role="t_user" EntitySet="t_user" />
+            <End Role="t_userlikes" EntitySet="t_userlikes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBContextStoreContainer" CdmEntityContainer="DB_Context">
+          <EntitySetMapping Name="t_comment">
+            <EntityTypeMapping TypeName="DBContext.t_comment">
+              <MappingFragment StoreEntitySet="t_comment">
+                <ScalarProperty Name="id_comment" ColumnName="id_comment" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_composition" ColumnName="id_composition" />
+                <ScalarProperty Name="comment_text" ColumnName="comment_text" />
+                <ScalarProperty Name="comment_date" ColumnName="comment_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_composition">
+            <EntityTypeMapping TypeName="DBContext.t_composition">
+              <MappingFragment StoreEntitySet="t_composition">
+                <ScalarProperty Name="id_composition" ColumnName="id_composition" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="artists" ColumnName="artists" />
+                <ScalarProperty Name="composers" ColumnName="composers" />
+                <ScalarProperty Name="album" ColumnName="album" />
+                <ScalarProperty Name="compos_year" ColumnName="compos_year" />
+                <ScalarProperty Name="is_visible" ColumnName="is_visible" />
+                <ScalarProperty Name="composition_url" ColumnName="composition_url" />
+                <ScalarProperty Name="albumcover" ColumnName="albumcover" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_compositiongenre">
+            <EntityTypeMapping TypeName="DBContext.t_compositiongenre">
+              <MappingFragment StoreEntitySet="t_compositiongenre">
+                <ScalarProperty Name="id_composgenre" ColumnName="id_composgenre" />
+                <ScalarProperty Name="id_genre" ColumnName="id_genre" />
+                <ScalarProperty Name="id_composition" ColumnName="id_composition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_genre">
+            <EntityTypeMapping TypeName="DBContext.t_genre">
+              <MappingFragment StoreEntitySet="t_genre">
+                <ScalarProperty Name="id_genre" ColumnName="id_genre" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_user">
+            <EntityTypeMapping TypeName="DBContext.t_user">
+              <MappingFragment StoreEntitySet="t_user">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="userlogin" ColumnName="userlogin" />
+                <ScalarProperty Name="userpass" ColumnName="userpass" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="superuser" ColumnName="superuser" />
+                <ScalarProperty Name="disactivated" ColumnName="disactivated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_userlikes">
+            <EntityTypeMapping TypeName="DBContext.t_userlikes">
+              <MappingFragment StoreEntitySet="t_userlikes">
+                <ScalarProperty Name="id_userlike" ColumnName="id_userlike" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_composition" ColumnName="id_composition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

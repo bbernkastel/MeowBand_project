@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d4a0d4cf0ea44a0e81aafdab7772cd0f" Name="Diagram1">
+        <EntityTypeShape EntityType="DBContext.t_comment" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBContext.t_composition" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBContext.t_compositiongenre" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBContext.t_genre" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBContext.t_user" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBContext.t_userlikes" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="DBContext.fk_comment_compos" ManuallyRouted="false" />
+        <AssociationConnector Association="DBContext.fk_comment_user" ManuallyRouted="false" />
+        <AssociationConnector Association="DBContext.fk_compos_user" ManuallyRouted="false" />
+        <AssociationConnector Association="DBContext.fk_compositiongenre_compos" ManuallyRouted="false" />
+        <AssociationConnector Association="DBContext.fk_userlikes_compos" ManuallyRouted="false" />
+        <AssociationConnector Association="DBContext.fk_compositiongenre_user" ManuallyRouted="false" />
+        <AssociationConnector Association="DBContext.fk_userlikes_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
