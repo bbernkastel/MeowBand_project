@@ -46,20 +46,20 @@
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="player_stop" Grid.Column="0" Content="stop" Margin="6,8,16,15" BorderThickness="0"  Command="MediaCommands.Stop" 
+                    <Button x:Name="player_stop" Grid.Column="0" Content="stop" Margin="6,8,16,15" BorderThickness="0"   Command="MediaCommands.Stop"
                         Style="{DynamicResource player_button}" Foreground="Transparent" Grid.Row="1">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources\Image\player\stop-16.png" Stretch="None"/>
                         </Button.Background>
                     </Button>
-                    <Button Command="MediaCommands.Play" x:Name="player_play" Grid.Column="1" Content="play" Margin="7,8,17,15" BorderThickness="0"   Click="player_play_Click"
+                    <Button x:Name="player_play" Grid.Column="1" Content="play" Margin="7,8,17,15" BorderThickness="0"  Command="MediaCommands.Play"
                         Style="{DynamicResource player_button}" Foreground="Transparent" Grid.Row="1">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/Image/player/play-5-16.png" Stretch="None"/>
                         </Button.Background>
                     </Button>
 
-                    <Button x:Name="player_pause" Grid.Column="2" Content="pause" Margin="2,8,12,15" BorderThickness="0" Command="MediaCommands.Pause" 
+                    <Button x:Name="player_pause" Grid.Column="2" Content="pause" Margin="2,8,12,15" BorderThickness="0" Command="MediaCommands.Pause"
                         Style="{DynamicResource player_button}" Foreground="Transparent" Grid.Row="1">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources\Image\player\media-pause-16.png" Stretch="None"/>
@@ -67,7 +67,7 @@
                     </Button>
                 </Grid>
                 <Image Source="Resources\Image\player\volume-16.png" Stretch="None" DockPanel.Dock="left" Margin="10,0,0,0" />
-                <MediaElement Name="meowPlayer"  LoadedBehavior="Manual" Stretch="None" DockPanel.Dock="Right" Visibility="Hidden" />
+                <MediaElement Name="meowPlayer" LoadedBehavior="Manual" Stretch="None" DockPanel.Dock="Right" UnloadedBehavior="Stop" Visibility="Hidden"/>
                 <TextBlock DockPanel.Dock="Right" Name="lblProgressStatus" FontSize="15" Margin="0,15,10,0" Foreground="#FFFAFAFA">00:00:00</TextBlock>
                 <Slider Name="volumeSlider" VerticalAlignment="Center" ValueChanged="volumeSlider_ValueChanged" Minimum="0" Maximum="1" Value="0.5" Width="70" Margin="10,0,0,0" Style="{DynamicResource meow_slider}" />
                 <Slider DockPanel.Dock="Right" Name="composProgress" ValueChanged="composProgress_ValueChanged" DragEnter="composProgress_DragEnter" DragLeave="composProgress_DragLeave" Width="200" Margin="0,14,10,0" DragOver="composProgress_DragOver" Style="{DynamicResource meow_slider}" />

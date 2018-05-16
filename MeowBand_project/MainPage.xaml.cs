@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -34,6 +35,8 @@ namespace MeowBand_project
 
 
         }
+        
+
 
         //since we can't get a current state from the MediaElement control, we have to keep track of the current state ourselves
         //local variable mediaPlayerIsPlaying : regularly check to see if the Pause and Stop buttons should be enabled
@@ -42,6 +45,8 @@ namespace MeowBand_project
         //userIsDraggingSlider tells the timer not to update the Slider while we drag
         //and to skip to the designated part when the user releases the mouse button
         private bool userIsDraggingSlider = false;
+
+        private double pos = 0;
         
         /// <summary>
         /// Composition slider progress
@@ -70,8 +75,14 @@ namespace MeowBand_project
         /// </summary>
         private void Play_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            if (pos>0)
+                meowPlayer.Position = TimeSpan.FromSeconds(composProgress.Value);
+
+
+
             meowPlayer.Play();
             mediaPlayerIsPlaying = true;
+            //player_play.IsEnabled = false;
         }
 
         /// <summary>
@@ -83,11 +94,17 @@ namespace MeowBand_project
         }
 
         /// <summary>
-        /// Play button
+        /// Pause button
         /// </summary>
         private void Pause_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            // аве кривым костылям
             meowPlayer.Pause();
+            pos = composProgress.Value;
+            meowPlayer.Close();
+            //player_pause.IsEnabled = false;
+            //player_play.IsEnabled = true;
+
         }
 
         /// <summary>
@@ -103,7 +120,11 @@ namespace MeowBand_project
         /// </summary>
         private void Stop_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            composProgress.Value = 0;
             meowPlayer.Stop();
+            mediaPlayerIsPlaying = false;
+            meowPlayer.Close();
+            //player_pause.IsEnabled = false;
         }
                
         /// <summary>
@@ -151,15 +172,6 @@ namespace MeowBand_project
             userIsDraggingSlider = false;
             meowPlayer.Position = TimeSpan.FromSeconds(composProgress.Value);
         }
-
-        private void player_play_Click(object sender, RoutedEventArgs e)
-        {
-            meowPlayer.Play();
-        }
-
-        private void player_pause_Click(object sender, RoutedEventArgs e)
-        {
-            meowPlayer.Pause();
-        }
+        
     }
 }
